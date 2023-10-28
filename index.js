@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
 	ac.addEventListener("reading", () => {
 		const total = ac.x + ac.y + ac.z;
 
-		battery = Math.Min(battery + total, Max);
+		battery = Math.min(battery + total, Max);
 	});
 	ac.addEventListener("error", (event) => {
 		if (event.error.name === "NotAllowedError") {
