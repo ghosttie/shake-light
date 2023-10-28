@@ -1,7 +1,8 @@
 document.addEventListener("DOMContentLoaded", (event) => {
 	const MaxBattery = 1000; // you'd have to shake it about ten times to fully charge the battery
 	const MaxBatteryIncrease = 100; // seems to be about the most we get violently shaking the phone
-	const BatteryDecay = 8; // 8 * 4 decays per second means we go from full to empty in about 30 seconds
+	const BatteryDecayAmount = 8; // 8 * 4 decays per second means we go from full to empty in about 30 seconds
+	const BatteryDecayRate = 250; // 250ms is four times per second
 
 	let battery = 0;
 	let maxmovement = 0;
@@ -31,9 +32,9 @@ document.addEventListener("DOMContentLoaded", (event) => {
 
 		document.body.style.backgroundColor = `rgb(${brightness}, ${brightness}, ${brightness})`;
 
-		battery = Math.max(battery - BatteryDecay, 0);
+		battery = Math.max(battery - BatteryDecayAmount, 0);
 
 		document.getElementById("battery").innerHTML = battery;
 		document.getElementById("maxmovement").innerHTML = maxmovement;
-	}, 4);
+	}, BatteryDecayRate);
 });
