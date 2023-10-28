@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
 
 		battery += total;
 	});
-	accelerometer.addEventListener("error", (event) => {
+	ac.addEventListener("error", (event) => {
 		if (event.error.name === "NotAllowedError") {
 			// todo: Branch to code for requesting permission.
 		} else if (event.error.name === "NotReadableError") {
