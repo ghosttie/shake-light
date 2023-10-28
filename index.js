@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", (event) => {
 	const MaxBattery = 1000;
 	const MaxBatteryIncrease = 10;
-	const BatteryDecay = 10;
+	const BatteryDecay = 2;
 
 	let battery = 0;
 	let x;
