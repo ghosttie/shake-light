@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", (event) => {
-	const MaxBattery = 1000;
-	const MaxBatteryIncrease = 100;
-	const BatteryDecay = 0.1;
+	const MaxBattery = 1000; // you'd have to shake it about ten times to fully charge the battery
+	const MaxBatteryIncrease = 100; // seems to be about the most we get violently shaking the phone
+	const BatteryDecay = 8; // 8 * 4 decays per second means we go from full to empty in about 30 seconds
 
 	let battery = 0;
 	let maxmovement = 0;
