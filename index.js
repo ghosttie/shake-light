@@ -28,8 +28,8 @@ document.addEventListener("DOMContentLoaded", (event) => {
 		battery = Math.max(battery--, 0);
 
 		document.getElementById("x").innerHTML = x;
-		document.getElementById("y").innerHTML = x;
-		document.getElementById("z").innerHTML = x;
-		document.getElementById("battery").innerHTML = x;
+		document.getElementById("y").innerHTML = y;
+		document.getElementById("z").innerHTML = z;
+		document.getElementById("battery").innerHTML = battery;
 	}, 4);
 });
