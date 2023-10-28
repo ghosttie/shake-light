@@ -7,6 +7,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
 	let x;
 	let y;
 	let z;
+	let maxmovement;
 
 	const ac = new Accelerometer({ frequency: 4 });
 	ac.addEventListener("reading", () => {
@@ -14,6 +15,10 @@ document.addEventListener("DOMContentLoaded", (event) => {
 		const total = Math.min(totalAbsoluteMovement, MaxBatteryIncrease);
 
 		battery = Math.min(battery + total, MaxBattery);
+
+		if (totalAbsoluteMovement > maxmovement) {
+			maxmovement = totalAbsoluteMovement;
+		}
 	});
 	ac.addEventListener("error", (event) => {
 		if (event.error.name === "NotAllowedError") {
@@ -35,5 +40,6 @@ document.addEventListener("DOMContentLoaded", (event) => {
 		document.getElementById("y").innerHTML = y;
 		document.getElementById("z").innerHTML = z;
 		document.getElementById("battery").innerHTML = battery;
+		document.getElementById("maxmovement").innerHTML = maxmovement;
 	}, 4);
 });
