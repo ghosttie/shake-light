@@ -1,4 +1,8 @@
 document.addEventListener('DOMContentLoaded', (event) => {
+	if ('serviceWorker' in navigator) { 
+		navigator.serviceWorker.register('/service.js'); 
+	} 
+
 	const MaxBattery = 1000; // you'd have to shake it about ten times to fully charge the battery
 	const MaxBatteryIncrease = 100; // seems to be about the most we get violently shaking the phone
 	const MovementThreshold = 10; // we get a nine point something sitting motionless

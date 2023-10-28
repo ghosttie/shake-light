@@ -1,0 +1,13 @@
+{
+  "background_color": "black",
+  "name": "Shake Light",
+  "short_name": "Shake Light",
+  "display": "standalone",
+  "icons": [
+    {
+      "src": "icon.svg",
+      "type": "image/svg"
+    }
+  ],
+  "start_url": "/"
+}
