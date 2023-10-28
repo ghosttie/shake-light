@@ -1,6 +1,7 @@
 document.addEventListener("DOMContentLoaded", (event) => {
 	const MaxBattery = 1000; // you'd have to shake it about ten times to fully charge the battery
 	const MaxBatteryIncrease = 100; // seems to be about the most we get violently shaking the phone
+	const MovementThreshold = 10; // we get a nine point something sitting motionless
 	const BatteryDecayAmount = 8; // 8 * 4 decays per second means we go from full to empty in about 30 seconds
 	const BatteryDecayRate = 250; // 250ms is four times per second
 
@@ -11,7 +12,7 @@ let maxmovement = 0;
 	const ac = new Accelerometer({ frequency: 4 });
 	ac.addEventListener("reading", () => {
 		const totalAbsoluteMovement = Math.abs(ac.x) + Math.abs(ac.y) + Math.abs(ac.z);
-		const total = Math.min(totalAbsoluteMovement, MaxBatteryIncrease);
+		const total = Math.min(Math.max(totalAbsoluteMovement, MovementThreshold), MaxBatteryIncrease);
 movement = totalAbsoluteMovement;
 
 		battery = Math.min(battery + total, MaxBattery);
