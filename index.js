@@ -4,10 +4,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
 	const BatteryDecay = 2;
 
 	let battery = 0;
-	let x;
-	let y;
-	let z;
-	let maxmovement;
+	let maxmovement = 0;
 
 	const ac = new Accelerometer({ frequency: 4 });
 	ac.addEventListener("reading", () => {
@@ -36,9 +33,6 @@ document.addEventListener("DOMContentLoaded", (event) => {
 
 		battery = Math.max(battery - BatteryDecay, 0);
 
-		document.getElementById("x").innerHTML = x;
-		document.getElementById("y").innerHTML = y;
-		document.getElementById("z").innerHTML = z;
 		document.getElementById("battery").innerHTML = battery;
 		document.getElementById("maxmovement").innerHTML = maxmovement;
 	}, 4);
