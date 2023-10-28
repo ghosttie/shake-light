@@ -5,12 +5,14 @@ document.addEventListener("DOMContentLoaded", (event) => {
 	const BatteryDecayRate = 250; // 250ms is four times per second
 
 	let battery = 0;
-	let maxmovement = 0;
+let movement = 0;
+let maxmovement = 0;
 
 	const ac = new Accelerometer({ frequency: 4 });
 	ac.addEventListener("reading", () => {
 		const totalAbsoluteMovement = Math.abs(ac.x) + Math.abs(ac.y) + Math.abs(ac.z);
 		const total = Math.min(totalAbsoluteMovement, MaxBatteryIncrease);
+movement = totalAbsoluteMovement;
 
 		battery = Math.min(battery + total, MaxBattery);
 
@@ -34,7 +36,8 @@ document.addEventListener("DOMContentLoaded", (event) => {
 
 		battery = Math.max(battery - BatteryDecayAmount, 0);
 
-		document.getElementById("battery").innerHTML = battery;
-		document.getElementById("maxmovement").innerHTML = maxmovement;
+document.getElementById("battery").innerHTML = battery;
+document.getElementById("movement").innerHTML = movement;
+document.getElementById("maxmovement").innerHTML = maxmovement;
 	}, BatteryDecayRate);
 });
