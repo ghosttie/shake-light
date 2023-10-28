@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
 	ac.addEventListener('reading', () => {
 		const totalAbsoluteMovement = Math.abs(ac.x) + Math.abs(ac.y) + Math.abs(ac.z);
 		const total = totalAbsoluteMovement > MovementThreshold
-			? Math.min(totalAbsoluteMovement, MaxBatteryIncrease)
+			? Math.min(Math.max(totalAbsoluteMovement - MovementThreshold, 0), MaxBatteryIncrease)
 			: 0;
 
 		battery = Math.min(battery + total, MaxBattery);
