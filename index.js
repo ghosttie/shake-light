@@ -1,5 +1,8 @@
 document.addEventListener("DOMContentLoaded", (event) => {
-	const Max = 1000;
+	const MaxBattery = 1000;
+	const MaxBatteryIncrease = 10;
+	const BatteryDecay = 10;
+
 	let battery = 0;
 	let x;
 	let y;
@@ -7,9 +10,10 @@ document.addEventListener("DOMContentLoaded", (event) => {
 
 	const ac = new Accelerometer({ frequency: 4 });
 	ac.addEventListener("reading", () => {
-		const total = ac.x + ac.y + ac.z;
+		const totalAbsoluteMovement = Math.abs(ac.x) + Math.abs(ac.y) + Math.abs(ac.z);
+		const total = Math.min(totalAbsoluteMovement, MaxBatteryIncrease);
 
-		battery = Math.min(battery + total, Max);
+		battery = Math.min(battery + total, MaxBattery);
 	});
 	ac.addEventListener("error", (event) => {
 		if (event.error.name === "NotAllowedError") {
@@ -21,11 +25,11 @@ document.addEventListener("DOMContentLoaded", (event) => {
 	ac.start();
 
 	window.setInterval(function() {
-		const brightness = (battery / Max) * 255;
+		const brightness = (battery / MaxBattery) * 255;
 
 		document.body.style.backgroundColor = `rgb(${brightness}, ${brightness}, ${brightness})`;
 
-		battery = Math.max(battery--, 0);
+		battery = Math.max(battery - BatteryDecay, 0);
 
 		document.getElementById("x").innerHTML = x;
 		document.getElementById("y").innerHTML = y;
