@@ -12,7 +12,9 @@ let maxmovement = 0;
 	const ac = new Accelerometer({ frequency: 4 });
 	ac.addEventListener("reading", () => {
 		const totalAbsoluteMovement = Math.abs(ac.x) + Math.abs(ac.y) + Math.abs(ac.z);
-		const total = Math.min(Math.max(totalAbsoluteMovement, MovementThreshold), MaxBatteryIncrease);
+		const total = totalAbsoluteMovement > MovementThreshold
+			? Math.min(totalAbsoluteMovement, MaxBatteryIncrease)
+			: 0;
 movement = totalAbsoluteMovement;
 
 		battery = Math.min(battery + total, MaxBattery);
